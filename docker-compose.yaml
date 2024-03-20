@@ -9,3 +9,11 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
+  alembic:
+    build:
+      context: .
+    command: sh -c "alembic upgrade head"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
